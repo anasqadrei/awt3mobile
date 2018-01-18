@@ -14,7 +14,10 @@ export default class BrowseScreen extends React.Component {
     return (
       <View>
         <Text>BrowseScreen Screen</Text>
-        <Button onPress={() => navigate('Artist', { id: 444 })} title="Artist" />
+        <Button onPress={() => navigate('Artist', { id: 1 })} title="وديع" />
+        <Button onPress={() => navigate('Artist', { id: 4 })} title="Artist doesn't exist" />
+        <Button onPress={() => navigate('Artist', { id: 185 })} title="فيروز" />
+        <Button onPress={() => navigate('Artist', { id: 5 })} title="اليسا" />
         <Button onPress={() => navigate('Hashtag')} title="#hashtag" />
       </View>
     );

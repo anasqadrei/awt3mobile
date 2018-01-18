@@ -1,15 +1,15 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import ApolloClient, { createNetworkInterface } from 'apollo-client'
-import { ApolloProvider } from 'react-apollo'
+import {StyleSheet, Text, View} from 'react-native'
+import {ApolloClient} from 'apollo-client'
+import {HttpLink} from 'apollo-link-http'
+import {InMemoryCache} from 'apollo-cache-inmemory'
+import {ApolloProvider} from 'react-apollo'
 import TabNavigator from './navigators/TabNavigator'
 
 // Initialize the Apollo Client
 const client = new ApolloClient({
-  networkInterface: createNetworkInterface({
-    // uri: 'http://localhost:4000/graphql',
-    uri: 'http://192.168.10.4:4000/graphql',
-  }),
+  link: new HttpLink({uri: 'http://192.168.10.4:4000/graphql', credentials: 'same-origin'}),
+  cache: new InMemoryCache()
 })
 
 const styles = StyleSheet.create({
@@ -19,17 +19,15 @@ const styles = StyleSheet.create({
     paddingTop: Expo.Constants.statusBarHeight,
     // alignItems: 'center',
     // justifyContent: 'center',
-  },
+  }
 })
 
 export default class App extends React.Component {
   render() {
-    return (
-      <ApolloProvider client={client}>
-        <View style={styles.container}>
-          <TabNavigator />
-        </View>
-      </ApolloProvider>
-    );
+    return (<ApolloProvider client={client}>
+      <View style={styles.container}>
+        <TabNavigator/>
+      </View>
+    </ApolloProvider>);
   }
 }
