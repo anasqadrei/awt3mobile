@@ -2,6 +2,7 @@ import React from 'react'
 import {View, Text, Button, Image} from 'react-native'
 import {graphql} from 'react-apollo'
 import gql from 'graphql-tag'
+import Sentry from 'sentry-expo';
 
 const artistQuery = gql `
   query artist ($id: Int!){
@@ -25,7 +26,7 @@ class ArtistScreen extends React.Component {
     if (this.props.data.loading) {
       return <Text>Loading</Text>
     } else if (this.props.data.error) {
-      console.log(this.props.data.error);
+      Sentry.captureException(this.props.data.error.message, {extra: this.props})
       return <Text>Error</Text>
     } else if (!this.props.data.artist) {
       return <Text>No artist</Text>

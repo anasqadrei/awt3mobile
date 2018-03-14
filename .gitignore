@@ -5,6 +5,11 @@
 # production?
 .expo/*
 
+# env
+# GRAPHQL_ENDPOINT
+# SENTRY_PUBLIC_DSN
+env.config.json
+
 # misc
 .DS_Store
 npm-debug.*

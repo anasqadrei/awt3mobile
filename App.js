@@ -5,10 +5,17 @@ import {HttpLink} from 'apollo-link-http'
 import {InMemoryCache} from 'apollo-cache-inmemory'
 import {ApolloProvider} from 'react-apollo'
 import TabNavigator from './navigators/TabNavigator'
+import Sentry from 'sentry-expo'
+import ENV from './env.config.json'
+
+// Remove this once Sentry is correctly setup.
+Sentry.enableInExpoDevelopment = true;
+
+Sentry.config(ENV.SENTRY_PUBLIC_DSN).install();
 
 // Initialize the Apollo Client
 const client = new ApolloClient({
-  link: new HttpLink({uri: 'http://192.168.10.4:4000/graphql', credentials: 'same-origin'}),
+  link: new HttpLink({uri: ENV.GRAPHQL_ENDPOINT, credentials: 'same-origin'}),
   cache: new InMemoryCache()
 })
 

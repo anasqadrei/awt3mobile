@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "awt3mobile",
-    "description": "An empty new project",
+    "description": "Awtarika mobile app",
     "slug": "awt3mobile",
     "privacy": "public",
     "sdkVersion": "24.0.0",
@@ -18,6 +18,16 @@
     },
     "ios": {
       "supportsTablet": true
+    },
+    "hooks": {
+      "postPublish": [{
+        "file": "sentry-expo/upload-sourcemaps",
+        "config": {
+          "organization": "XXX",
+          "project": "XXX",
+          "authToken": "XXX"
+        }
+      }]
     }
   }
 }
